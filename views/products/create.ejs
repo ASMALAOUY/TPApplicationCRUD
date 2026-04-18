@@ -1,0 +1,57 @@
+<h1>Ajouter un produit</h1>
+
+<% if (locals.error) { %>
+  <div class="alert alert-danger"><%= error %></div>
+<% } %>
+
+<div class="card">
+  <div class="card-body">
+    <form action="/products/create" method="POST">
+      <div class="mb-3">
+        <label for="name" class="form-label">Nom du produit *</label>
+        <input type="text" class="form-control" id="name" name="name" value="<%= locals.product?.name || '' %>" required>
+      </div>
+      
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="price" class="form-label">Prix *</label>
+          <input type="number" class="form-control" id="price" name="price" value="<%= locals.product?.price || '' %>" step="0.01" required>
+        </div>
+        
+        <div class="col-md-6">
+          <label for="quantity" class="form-label">Quantité</label>
+          <input type="number" class="form-control" id="quantity" name="quantity" value="<%= locals.product?.quantity || 0 %>">
+        </div>
+      </div>
+      
+      <div class="mb-3">
+        <label for="category" class="form-label">Catégorie</label>
+        <select class="form-select" id="category" name="category">
+          <% categories.forEach(category => { %>
+            <option value="<%= category %>" <%= locals.product?.category === category ? 'selected' : '' %>><%= category %></option>
+          <% }) %>
+        </select>
+      </div>
+      
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea class="form-control" id="description" name="description" rows="3"><%= locals.product?.description || '' %></textarea>
+      </div>
+      
+      <div class="mb-3">
+        <label for="tags" class="form-label">Tags (séparés par des virgules)</label>
+        <input type="text" class="form-control" id="tags" name="tags" value="<%= locals.product?.tags ? (Array.isArray(locals.product.tags) ? locals.product.tags.join(', ') : locals.product.tags) : '' %>">
+      </div>
+      
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="inStock" name="inStock" value="true" <%= locals.product?.inStock !== false ? 'checked' : '' %>>
+        <label class="form-check-label" for="inStock">En stock</label>
+      </div>
+      
+      <div class="d-flex justify-content-between">
+        <a href="/products" class="btn btn-secondary">Annuler</a>
+        <button type="submit" class="btn btn-primary">Ajouter</button>
+      </div>
+    </form>
+  </div>
+</div>
