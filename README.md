@@ -29,3 +29,10 @@ Ce projet est une application web complète qui implémente les opérations CRUD
 -  Messages flash pour les actions
 
 ## demo
+
+
+
+
+
+https://github.com/user-attachments/assets/9399a42d-2404-4845-bd16-43009608e904
+
